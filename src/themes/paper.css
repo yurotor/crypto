@@ -1,0 +1,24 @@
+[data-theme="paper"] {
+  --bg: #f4efe6;
+  --text: #2c2416;
+  --text-secondary: #7a6f60;
+  --card-bg: #faf7f0;
+  --border: #d4c9b8;
+  --accent: #8b4513;
+  --accent-hover: #a0522d;
+  --positive: #2e7d32;
+  --negative: #c62828;
+  --font-family: 'Merriweather', Georgia, serif;
+  --chart-text: #2c2416;
+  --chart-grid: rgba(44, 36, 22, 0.08);
+  --shadow: 0 1px 4px rgba(44, 36, 22, 0.1);
+  --border-radius: 4px;
+}
+
+[data-theme="paper"] .app {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+[data-theme="paper"] .app-title h1 {
+  font-style: italic;
+}

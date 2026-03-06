@@ -1,0 +1,109 @@
+/* ---------------------------------------------------------------------------
+   StatsPanel – horizontal row of stat cards
+   --------------------------------------------------------------------------- */
+
+.stats-panel {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 100%;
+}
+
+.stats-panel--loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Individual card */
+.stats-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius, 12px);
+  padding: 16px 20px;
+  min-width: 0;
+}
+
+/* Card 1 – price card */
+.stats-card--price {
+  flex: 1.4;
+}
+
+.stats-card__coin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stats-card__coin-image {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.stats-card__coin-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.stats-card__coin-name {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.stats-card__coin-symbol {
+  font-size: 0.7rem;
+  color: var(--text-secondary, var(--text));
+  opacity: 0.6;
+}
+
+.stats-card__price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* Labels & values */
+.stats-card__label {
+  font-size: 0.75rem;
+  color: var(--text-secondary, var(--text));
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stats-card__value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* Responsive: wrap on mobile */
+@media (max-width: 768px) {
+  .stats-panel {
+    flex-wrap: wrap;
+  }
+
+  .stats-card {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 140px;
+  }
+
+  .stats-card--price {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-card {
+    flex: 1 1 100%;
+  }
+}

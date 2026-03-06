@@ -1,0 +1,58 @@
+/* ---------------------------------------------------------------------------
+   CoinSelector – horizontal scrollable pill row
+   --------------------------------------------------------------------------- */
+
+.coin-selector {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+
+  /* Hide scrollbar across browsers */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.coin-selector::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual pill */
+.coin-selector__pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.coin-selector__pill:hover {
+  opacity: 0.85;
+}
+
+/* Active / selected pill */
+.coin-selector__pill--active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.coin-selector__pill-image {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.coin-selector__pill-symbol {
+  line-height: 1;
+}

@@ -1,0 +1,32 @@
+/* ---------------------------------------------------------------------------
+   TimeRange – row of range buttons
+   --------------------------------------------------------------------------- */
+
+.time-range {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.time-range__btn {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.time-range__btn:hover {
+  opacity: 0.85;
+}
+
+/* Selected state */
+.time-range__btn--active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}

@@ -1,0 +1,35 @@
+[data-theme="vaporwave"] {
+  --bg: #1a0a2e;
+  --text: #ff71ce;
+  --text-secondary: #b967ff;
+  --card-bg: rgba(30, 15, 50, 0.9);
+  --border: rgba(255, 113, 206, 0.2);
+  --accent: #01cdfe;
+  --accent-hover: #33d9ff;
+  --positive: #05ffa1;
+  --negative: #ff6b6b;
+  --font-family: 'Press Start 2P', monospace;
+  --chart-text: #ff71ce;
+  --chart-grid: rgba(255, 113, 206, 0.06);
+  --shadow: 0 0 20px rgba(185, 103, 255, 0.15);
+  --border-radius: 0px;
+}
+
+[data-theme="vaporwave"] .app {
+  background: linear-gradient(180deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
+}
+
+[data-theme="vaporwave"] .app-title h1 {
+  background: linear-gradient(90deg, #ff71ce, #01cdfe, #b967ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="vaporwave"] * {
+  font-size: 0.85em;
+}
+
+[data-theme="vaporwave"] h1 {
+  font-size: 1.5rem !important;
+}

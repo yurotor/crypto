@@ -1,0 +1,29 @@
+[data-theme="futuristic"] {
+  --bg: #0d0d1a;
+  --text: #e0e0ff;
+  --text-secondary: #8888bb;
+  --card-bg: rgba(20, 20, 50, 0.8);
+  --border: rgba(0, 255, 255, 0.15);
+  --accent: #00ffff;
+  --accent-hover: #33ffff;
+  --positive: #00ff88;
+  --negative: #ff0055;
+  --font-family: 'Orbitron', 'Segoe UI', sans-serif;
+  --chart-text: #e0e0ff;
+  --chart-grid: rgba(0, 255, 255, 0.06);
+  --shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  --border-radius: 4px;
+}
+
+[data-theme="futuristic"] .app-title h1 {
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.2);
+}
+
+[data-theme="futuristic"] .stats-card,
+[data-theme="futuristic"] .coin-pill,
+[data-theme="futuristic"] .time-btn,
+[data-theme="futuristic"] .theme-select,
+[data-theme="futuristic"] .refresh-btn {
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.05);
+}
