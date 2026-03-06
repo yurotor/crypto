@@ -26,10 +26,10 @@ export interface ChartDataPoint {
 }
 
 // ---------------------------------------------------------------------------
-// In-memory cache (TTL = 30 s)
+// In-memory cache (TTL = 90 s, longer than 60 s refresh to reduce API calls)
 // ---------------------------------------------------------------------------
 
-const CACHE_TTL_MS = 30_000;
+const CACHE_TTL_MS = 90_000;
 
 interface CacheEntry<T> {
   data: T;
@@ -56,10 +56,20 @@ function setCache<T>(key: string, data: T): void {
 // API helpers
 // ---------------------------------------------------------------------------
 
+export class RateLimitError extends Error {
+  constructor(message = "CoinGecko rate limit exceeded. Try again shortly.") {
+    super(message);
+    this.name = "RateLimitError";
+  }
+}
+
 const BASE_URL = "https://api.coingecko.com/api/v3";
 
-async function fetchJSON<T>(url: string): Promise<T> {
-  const res = await fetch(url);
+async function fetchJSON<T>(url: string, signal?: AbortSignal): Promise<T> {
+  const res = await fetch(url, { signal });
+  if (res.status === 429) {
+    throw new RateLimitError();
+  }
   if (!res.ok) {
     throw new Error(`CoinGecko API error: ${res.status} ${res.statusText}`);
   }
@@ -73,7 +83,7 @@ async function fetchJSON<T>(url: string): Promise<T> {
 /**
  * Fetch the top 10 coins sorted by 24 h volume.
  */
-export async function fetchTopCoins(): Promise<CoinMarket[]> {
+export async function fetchTopCoins(signal?: AbortSignal): Promise<CoinMarket[]> {
   const cacheKey = "top-coins";
   const cached = getCached<CoinMarket[]>(cacheKey);
   if (cached) return cached;
@@ -87,7 +97,8 @@ export async function fetchTopCoins(): Promise<CoinMarket[]> {
   });
 
   const data = await fetchJSON<CoinMarket[]>(
-    `${BASE_URL}/coins/markets?${params.toString()}`
+    `${BASE_URL}/coins/markets?${params.toString()}`,
+    signal
   );
 
   setCache(cacheKey, data);
@@ -102,7 +113,8 @@ export async function fetchTopCoins(): Promise<CoinMarket[]> {
  */
 export async function fetchMarketChart(
   coinId: string,
-  days: string
+  days: string,
+  signal?: AbortSignal
 ): Promise<ChartDataPoint[]> {
   const cacheKey = `chart-${coinId}-${days}`;
   const cached = getCached<ChartDataPoint[]>(cacheKey);
@@ -114,7 +126,8 @@ export async function fetchMarketChart(
   });
 
   const raw = await fetchJSON<{ prices: [number, number][] }>(
-    `${BASE_URL}/coins/${coinId}/market_chart?${params.toString()}`
+    `${BASE_URL}/coins/${coinId}/market_chart?${params.toString()}`,
+    signal
   );
 
   // Transform & deduplicate by timestamp

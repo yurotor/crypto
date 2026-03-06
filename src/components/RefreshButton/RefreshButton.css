@@ -51,4 +51,6 @@
   color: var(--text-secondary, var(--text));
   opacity: 0.6;
   white-space: nowrap;
+  min-width: 110px;
+  text-align: right;
 }

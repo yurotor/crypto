@@ -15,7 +15,7 @@ function App() {
     return localStorage.getItem('crypto-theme') || 'standard';
   });
 
-  const { coins, chartData, loading, lastUpdated, selectedCoinData, refresh } = useCryptoData(selectedCoin, timeRange);
+  const { coins, chartData, loading, error, lastUpdated, selectedCoinData, refresh } = useCryptoData(selectedCoin, timeRange);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -52,7 +52,9 @@ function App() {
       </header>
 
       <CoinSelector
-        coins={coins.map(c => ({ id: c.id, symbol: c.symbol, name: c.name, image: c.image }))}
+        coins={[...coins]
+          .sort((a, b) => (a.id === 'bitcoin' ? -1 : b.id === 'bitcoin' ? 1 : 0))
+          .map(c => ({ id: c.id, symbol: c.symbol, name: c.name, image: c.image }))}
         selectedCoin={selectedCoin}
         onSelect={setSelectedCoin}
       />
@@ -73,7 +75,7 @@ function App() {
         <span className="period-label">{getDaysLabel(timeRange)} period</span>
       </div>
 
-      <Chart data={chartData} loading={loading && chartData.length === 0} />
+      <Chart data={chartData} loading={loading && chartData.length === 0} error={error} onRetry={refresh} />
     </div>
   );
 }

@@ -15,6 +15,8 @@ import './Chart.css';
 interface ChartProps {
   data: { time: UTCTimestamp; value: number }[];
   loading: boolean;
+  error?: string | null;
+  onRetry?: () => void;
 }
 
 function getThemeColors() {
@@ -67,7 +69,7 @@ const BASELINE_SERIES_OPTIONS = {
   lineWidth: 2 as const,
 };
 
-const Chart: React.FC<ChartProps> = ({ data, loading }) => {
+const Chart: React.FC<ChartProps> = ({ data, loading, error, onRetry }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const seriesRef = useRef<ISeriesApi<'Baseline'> | null>(null);
@@ -140,7 +142,12 @@ const Chart: React.FC<ChartProps> = ({ data, loading }) => {
   useEffect(() => {
     const series = seriesRef.current;
     const chart = chartRef.current;
-    if (!series || !chart || data.length === 0) return;
+    if (!series || !chart) return;
+
+    if (data.length === 0) {
+      series.setData([]);
+      return;
+    }
 
     // Set baseValue to first data point so the baseline reflects the starting price
     series.applyOptions({
@@ -152,12 +159,19 @@ const Chart: React.FC<ChartProps> = ({ data, loading }) => {
   }, [data]);
 
   const showLoading = loading && data.length === 0;
+  const showError = !loading && error && data.length === 0;
 
   return (
     <div className="chart-container" ref={containerRef}>
       {showLoading && (
         <div className="chart-loading-overlay">
           <span>Loading...</span>
+        </div>
+      )}
+      {showError && (
+        <div className="chart-error-overlay">
+          <span>{error}</span>
+          {onRetry && <button className="chart-retry-btn" onClick={onRetry}>Retry</button>}
         </div>
       )}
     </div>

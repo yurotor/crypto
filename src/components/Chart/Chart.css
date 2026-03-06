@@ -4,15 +4,35 @@
   min-height: 400px;
 }
 
-.chart-loading-overlay {
+.chart-loading-overlay,
+.chart-error-overlay {
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.15);
   z-index: 10;
   font-size: 1rem;
   color: inherit;
+  gap: 12px;
+}
+
+.chart-loading-overlay {
   pointer-events: none;
+}
+
+.chart-retry-btn {
+  padding: 6px 18px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.chart-retry-btn:hover {
+  opacity: 0.8;
 }

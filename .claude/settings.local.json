@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:www.coingecko.com)",
+      "WebFetch(domain:tradingview.github.io)",
+      "WebFetch(domain:docs.coingecko.com)",
+      "Bash(git init)",
+      "Bash(git remote add origin https://github.com/yurotor/crypto.git)",
+      "Bash(git branch -m main)",
+      "Bash(npm create vite@latest . -- --template react-ts)",
+      "Bash(npm install)",
+      "Bash(npm install lightweight-charts)",
+      "Bash(ls /Users/urikeselman/Projects/Crypto/src/utils/format*)",
+      "Bash(cat:*)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npm run build)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git status -u)",
+      "Bash(git add .gitignore CLAUDE.md index.html package.json package-lock.json eslint.config.js tsconfig.json tsconfig.app.json tsconfig.node.json vite.config.ts src/ todo.md .claude/launch.json)",
+      "Bash(git commit:*)",
+      "Bash(git config user.name \"Uri Keselman\")",
+      "Bash(git config user.email \"uri@vir-tec.net\")",
+      "Bash(git push -u origin main)",
+      "Bash(gh auth status)",
+      "Bash(git remote set-url origin git@github.com:yurotor/crypto.git)",
+      "Bash(brew install gh)",
+      "Bash(git remote set-url origin https://github.com/yurotor/crypto.git)"
+    ]
+  }
+}

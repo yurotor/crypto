@@ -37,9 +37,19 @@ src/
 - **No axios** — native fetch + simple cache Map
 - **CSS variables** via `data-theme` attribute on `<html>` — each theme file sets `--bg`, `--text`, `--card-bg`, `--accent`, etc.
 - **Theme persistence** — saved to localStorage
+- **Separated data fetching** — coins list and chart data are fetched independently so a chart fetch failure doesn't block the coin list
 
 ## Themes
 Standard (Apple UI), Retro (90s CRT), Futuristic (Cyberpunk), Vaporwave, Paper (Newspaper), Hacker (Matrix)
 
 ## API Rate Limits
 CoinGecko free tier: ~10-30 calls/min. Cache TTL is 30s. Auto-refresh every 30s.
+
+## Remaining Bug Fixes (in progress)
+1. **BTC first position** — CoinSelector should show BTC first regardless of API sort order. Fix in App.tsx where coins are passed to CoinSelector: sort to put 'bitcoin' first.
+2. **Refresh button layout shift** — The "Updated Xs ago" text changes width as numbers grow, causing the refresh button to shift. Fix in RefreshButton.css: give `.refresh-button__text` a `min-width` (e.g. 110px) or use `text-align: right` with fixed width.
+
+## GitHub
+- Repo: https://github.com/yurotor/crypto
+- Auth: gh CLI configured for user yurotor
+- Remote: HTTPS
